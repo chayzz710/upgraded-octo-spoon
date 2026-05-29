@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&family=Caveat:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  html,
+  body,
+  #root {
+    @apply bg-cream text-chocolate font-body;
+    min-height: 100%;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-5 py-2.5 rounded-full bg-sunflower text-chocolate font-medium shadow-soft hover:bg-sunflower-dark transition cursor-pointer;
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2 rounded-full text-chocolate hover:bg-sunflower/20 transition cursor-pointer;
+  }
+
+  .btn-danger {
+    @apply px-5 py-2.5 rounded-full bg-red-100 text-red-700 font-medium hover:bg-red-200 transition cursor-pointer;
+  }
+
+  .card {
+    @apply bg-surface rounded-2xl shadow-soft p-6;
+  }
+
+  .polaroid {
+    @apply bg-white p-3 pb-6 shadow-polaroid;
+  }
+
+  .hand-label {
+    @apply font-hand text-orchid-deep;
+  }
+
+  .input-base {
+    @apply w-full px-4 py-2.5 rounded-xl border border-chocolate/20 bg-surface text-chocolate placeholder:text-chocolate/40 focus:outline-none focus:ring-2 focus:ring-sunflower/60 transition;
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes heartPop {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--dx), -140px) rotate(var(--r)) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+
+  70% {
+    transform: scale(2);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* ── Responsive tweaks ────────────────────────────────────── */
+@layer base {
+
+  /* Prevent horizontal overflow on mobile */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Tighter headings on small screens */
+  @media (max-width: 640px) {
+    h1 {
+      font-size: clamp(1.6rem, 6vw, 2.5rem) !important;
+    }
+
+    h2 {
+      font-size: clamp(1.3rem, 5vw, 2rem) !important;
+    }
+  }
+}
+
+@layer components {
+
+  /* Responsive page sections */
+  .section-width {
+    width: 92%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Stack two-col layouts on mobile */
+  @media (max-width: 640px) {
+    .responsive-grid-2 {
+      grid-template-columns: 1fr !important;
+    }
+
+    .responsive-grid-3 {
+      grid-template-columns: 1fr !important;
+    }
+  }
+}
+
+/* ── Hero layout ────────────────────────────────────────── */
+@media (min-width: 680px) {
+  .hero-center {
+    order: 2;
+    flex: 0 0 auto;
+  }
+
+  .hero-avatar-left {
+    order: 1;
+  }
+
+  .hero-avatar-right {
+    order: 3;
+  }
+}
+
+@media (max-width: 679px) {
+  .hero-center {
+    flex: 1 1 100% !important;
+    order: 3;
+    width: 100%;
+  }
+
+  .hero-avatar-left {
+    order: 1;
+    flex: 1 1 0 !important;
+    min-width: 0;
+  }
+
+  .hero-avatar-right {
+    order: 2;
+    flex: 1 1 0 !important;
+    min-width: 0;
+  }
+}
